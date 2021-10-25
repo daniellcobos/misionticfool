@@ -21,6 +21,7 @@ class DoctorList(APIView):
     def post(self, request, format=None):
         serializer = DoctorSerializer(data=request.data)
         if serializer.is_valid():
+            
             serializer.save()
             return Response(status=status.HTTP_204_NO_CONTENT)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -56,7 +57,7 @@ class ClientList(APIView):
         serializer = ClientListSerializer(data=request.data)
         if serializer.is_valid():
             print(serializer.data)
-            Specialtyid = serializer.data["id"]
+            Specialtyid = serializer.data["idClient"]
             mSpecialty = Client.objects.get(pk=Specialtyid)
             mSpecialty.password = serializer.data["password"]
             mSpecialty.email = serializer.data["email"]
