@@ -33,4 +33,26 @@ class SpecialtyListSerializer(serializers.ModelSerializer):
         model = Specialty
         fields = ('id','name','description','doctors')
         read_only_fields = ["doctors"]
+class DoctorSerializer(serializers.ModelSerializer):
+    
+    messages = MessageSerializer(many=True,read_only=True)
+    reservations = ReservationSerializer(many=True,read_only=True)
+    class Meta:
+        model = Doctor
+        fields = ('id','name','department','year','specialty','description','messages','reservations')
+class ClientSerializer(serializers.ModelSerializer):
+    
+    messages = MessageSerializer(many=True,read_only=True)
+    reservations = ReservationSerializer(many=True,read_only=True)
+    class Meta:
+        model = Client
+        fields = ('id','name','email','age','password','messages','reservations')
+class SpecialtySerializer(serializers.ModelSerializer):
+    
+    doctors = DoctorListSerializer(many=True,read_only=True)
+    class Meta:
+        model = Specialty
+        fields = ('id','name','description','doctors')
+        read_only_fields = ["doctors"]
+
 

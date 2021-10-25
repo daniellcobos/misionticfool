@@ -19,7 +19,7 @@ class DoctorList(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        serializer = DoctorListSerializer(data=request.data)
+        serializer = DoctorSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_204_NO_CONTENT)
@@ -36,7 +36,7 @@ class DoctorList(APIView):
             return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
 class DoctorDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Doctor.objects.all()
-    serializer_class = DoctorListSerializer
+    serializer_class = DoctorSerializer
 class ClientList(APIView):
     """
     List all doctors, or create a new doctor.
@@ -47,7 +47,7 @@ class ClientList(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        serializer = ClientListSerializer(data=request.data)
+        serializer = ClientSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_204_NO_CONTENT)
@@ -67,7 +67,7 @@ class ClientList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 class ClientDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Client.objects.all()
-    serializer_class = ClientListSerializer
+    serializer_class = ClientSerializer
 class SpecialtyList(APIView):
     """
     List all doctors, or create a new doctor.
@@ -78,7 +78,7 @@ class SpecialtyList(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        serializer = SpecialtyListSerializer(data=request.data)
+        serializer = SpecialtySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_204_NO_CONTENT)
@@ -96,4 +96,4 @@ class SpecialtyList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 class SpecialtyDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Specialty.objects.all()
-    serializer_class = SpecialtyListSerializer
+    serializer_class = SpecialtySerializer
