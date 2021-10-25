@@ -20,12 +20,12 @@ class DoctorListSerializer(serializers.ModelSerializer):
         model = Doctor
         fields = ('id','name','department','year','specialty','description','messages','reservations')
 class ClientListSerializer(serializers.ModelSerializer):
-    id = serializers.IntegerField()
+    idClient = serializers.IntegerField()
     messages = MessageSerializer(many=True,read_only=True)
     reservations = ReservationSerializer(many=True,read_only=True)
     class Meta:
         model = Client
-        fields = ('id','name','email','age','password','messages','reservations')
+        fields = ('idClient','name','email','age','password','messages','reservations')
 class SpecialtyListSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField()
     doctors = DoctorListSerializer(many=True,read_only=True)
@@ -46,7 +46,7 @@ class ClientSerializer(serializers.ModelSerializer):
     reservations = ReservationSerializer(many=True,read_only=True)
     class Meta:
         model = Client
-        fields = ('id','name','email','age','password','messages','reservations')
+        fields = ('idClient','name','email','age','password','messages','reservations')
 class SpecialtySerializer(serializers.ModelSerializer):
     
     doctors = DoctorListSerializer(many=True,read_only=True)
